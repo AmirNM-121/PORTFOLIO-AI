@@ -62,7 +62,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               AI-Powered Portfolio Creation
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
               Create Your Perfect
               <br />
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -70,7 +70,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </span>
             </h1>
             
-            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
               Transform your ideas into stunning, professional portfolios using AI. 
               No coding required – just describe what you want and watch the magic happen.
             </p>
@@ -86,7 +86,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               
               <button
                 onClick={() => onNavigate('templates')}
-                className="px-8 py-4 bg-white text-gray-700 rounded-lg font-semibold hover:bg-gray-50 border-2 border-gray-200 hover:border-blue-300 transition-colors flex items-center justify-center"
+                className="px-8 py-4 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-slate-700 border-2 border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 transition-colors flex items-center justify-center"
               >
                 <Eye className="w-5 h-5 mr-2" />
                 View Templates
@@ -97,20 +97,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full opacity-60 animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-32 h-32 bg-purple-200 rounded-full opacity-40 animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 left-20 w-24 h-24 bg-teal-200 rounded-full opacity-50 animate-pulse delay-500"></div>
+          <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 dark:bg-blue-800 rounded-full opacity-60 animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-32 h-32 bg-purple-200 dark:bg-purple-800 rounded-full opacity-40 animate-pulse delay-1000"></div>
+          <div className="absolute bottom-20 left-20 w-24 h-24 bg-teal-200 dark:bg-teal-800 rounded-full opacity-50 animate-pulse delay-500"></div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Why Choose PortfolioAI?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Everything you need to create, customize, and deploy professional portfolios with the power of AI
             </p>
           </div>
@@ -121,15 +121,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               return (
                 <div
                   key={index}
-                  className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 transition-colors group"
+                  className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 transition-colors group"
                 >
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-300">
                     {feature.description}
                   </p>
                 </div>
@@ -160,13 +160,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Loved by Professionals
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               See what our users are saying about PortfolioAI
             </p>
           </div>
@@ -175,9 +175,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
               >
-                <p className="text-gray-600 mb-6 italic">
+                <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
                   "{testimonial.content}"
                 </p>
                 <div className="flex items-center">
@@ -187,10 +187,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                     className="w-12 h-12 rounded-full mr-4"
                   />
                   <div>
-                    <div className="font-semibold text-gray-900">
+                    <div className="font-semibold text-gray-900 dark:text-white">
                       {testimonial.name}
                     </div>
-                    <div className="text-gray-500 text-sm">
+                    <div className="text-gray-500 dark:text-gray-400 text-sm">
                       {testimonial.role}
                     </div>
                   </div>
@@ -202,12 +202,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
             Ready to Build Your Portfolio?
           </h2>
-          <p className="text-xl text-gray-600 mb-10">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
             Join thousands of professionals who've created stunning portfolios with PortfolioAI
           </p>
           
