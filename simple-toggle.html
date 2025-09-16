@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Mode Toggle</title>
+    <style>
+        /* CSS Variables for Light Theme */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --button-bg: #f0f0f0;
+            --button-hover: #e0e0e0;
+            --button-border: #cccccc;
+        }
+
+        /* CSS Variables for Dark Theme */
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --button-bg: #333333;
+            --button-hover: #444444;
+            --button-border: #555555;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-bg);
+            border: 2px solid var(--button-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--button-hover);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Demo Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--button-bg);
+            border: 1px solid var(--button-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .button-demo {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-demo:hover {
+            background-color: #2563eb;
+        }
+
+        /* Smooth transitions for all elements */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        🌙
+    </button>
+
+    <!-- Demo Content -->
+    <div class="container">
+        <h1>Dark/Light Mode Toggle Demo</h1>
+        
+        <p>
+            This page demonstrates a simple dark/light mode toggle. Click the button in the top-right corner 
+            to switch between themes. The button shows a moon (🌙) when in light mode and a sun (🌞) when in dark mode.
+        </p>
+
+        <div class="card">
+            <h2>Features</h2>
+            <ul>
+                <li>✅ Smooth transitions between themes</li>
+                <li>✅ Persistent theme preference in localStorage</li>
+                <li>✅ Icon changes based on current mode</li>
+                <li>✅ Accessible button with proper ARIA labels</li>
+                <li>✅ Hover and focus states</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Try It Out</h2>
+            <p>Click the toggle button to see the theme change instantly. Reload the page to see that your preference is saved!</p>
+            <button class="button-demo">Sample Button</button>
+        </div>
+
+        <p>
+            The theme preference is automatically saved to localStorage and will persist across page reloads. 
+            All colors transition smoothly when switching between light and dark modes.
+        </p>
+    </div>
+
+    <script>
+        // Get the toggle button
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Initialize theme
+        function initializeTheme() {
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                body.classList.add('dark-mode');
+                updateToggleIcon();
+            } else {
+                body.classList.remove('dark-mode');
+                updateToggleIcon();
+            }
+        }
+
+        // Update the toggle button icon based on current theme
+        function updateToggleIcon() {
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            if (isDarkMode) {
+                themeToggle.textContent = '🌞'; // Show sun when in dark mode
+                themeToggle.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                themeToggle.textContent = '🌙'; // Show moon when in light mode
+                themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+            }
+        }
+
+        // Toggle theme function
+        function toggleTheme() {
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            if (isDarkMode) {
+                // Switch to light mode
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Switch to dark mode
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+            
+            updateToggleIcon();
+        }
+
+        // Add click event listener to toggle button
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Add keyboard support (Enter and Space keys)
+        themeToggle.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleTheme();
+            }
+        });
+
+        // Initialize theme on page load
+        initializeTheme();
+
+        // Listen for system theme changes (optional enhancement)
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            // Only auto-switch if user hasn't set a preference
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    body.classList.add('dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                }
+                updateToggleIcon();
+            }
+        });
+    </script>
+</body>
+</html>
